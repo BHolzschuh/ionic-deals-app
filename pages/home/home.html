@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title>Deals for {{ day }}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="presentPopover($event)">All Deals</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+
+  <div *ngFor="let deal of deals" (swipe)="swipeEvent($event)">
+    <ion-card *ngIf="day == deal.dday">
+      <img [src]="deal.image">
+      <ion-card-content class="score">
+        <ion-card-title>
+          <h2 [innerHTML]="deal.title"></h2>
+        </ion-card-title>
+        <p [innerHTML]="deal.description"></p>
+      </ion-card-content>
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='star'></ion-icon>
+            Favorite
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='share-alt'></ion-icon>
+            Share
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <a [href]="deal.link">
+            <button ion-button clear small color="danger" icon-start>
+              <ion-icon name='card'></ion-icon>
+              Order
+            </button>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+</ion-content>
